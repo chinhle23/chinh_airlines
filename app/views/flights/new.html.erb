@@ -1,0 +1,24 @@
+<h1>Create a New Flight</h1>
+ 
+<%= form_for(@flight) do |f| %>
+  <ul>
+    <% @flight.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= f.label :origin %><br />
+    <%= f.text_field :origin %>
+  </p>
+  <p>
+    <%= f.label :destination %><br />
+    <%= f.text_field :destination %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

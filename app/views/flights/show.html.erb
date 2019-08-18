@@ -1,0 +1,46 @@
+<h2>Selected Flight Info:</h2>
+<ul>
+  <li>Origin Airport: <%= @flight.origin %></li>
+  <li>Destination Airport: <%= @flight.destination %></li>
+  <li>Price: $<%= @flight.price %></li>
+</ul>
+
+<h3>Transactions</h3>
+
+<form id="payment-form" action="/flights/<%= @flight.id %>/transactions/create">
+  <input type="hidden" name="payment_method_token" id="payment_method_token">
+  <input type="hidden" name="full_name" id="full_name">
+  <input type="hidden" name="month" id="month">
+  <input type="hidden" name="year" id="year">
+  <input type="button" value="Enter Payment Info" onclick="SpreedlyExpress.openView();">
+</form>
+
+<script>
+  SpreedlyExpress.init("<%= "#{@environment_key}" %>", {
+    "amount": "<%= "$#{@flight.price}" %>",
+    "company_name": "Spreedly Airlines",
+    "sidebar_top_description": "Confirm Purchase",
+    "sidebar_bottom_description": "<%= "#{@flight.origin}" %> to <%= "#{@flight.destination}" %>"
+  });
+
+  SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+
+    // Send requisite payment method info to backend
+    var tokenField = document.getElementById("payment_method_token");
+
+    tokenField.setAttribute("value", token);
+
+    var masterForm = document.getElementById('payment-form');
+    masterForm.submit();
+  });
+
+  let handlePaymentToken = function(token, formData) {
+    document.getElementById('full_name').value = formData["full_name"]
+    document.getElementById('month').value = formData["month"]
+    document.getElementById('year').value = formData["year"]
+    document.getElementById('payment_method_token').value = token
+    document.getElementById('payment-form').submit();
+  }
+  SpreedlyExpress.onPaymentMethod(handlePaymentToken);
+
+</script>

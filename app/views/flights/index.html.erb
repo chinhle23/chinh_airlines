@@ -1,0 +1,23 @@
+<h2>Available Flights<h2>
+
+<table>
+  <tr>
+    <th>Origin  |</th> 
+    <th> Destination  |</th> 
+    <th> Price  |</th>
+    <th> Add $200 Hotel Room?</th>
+  </tr>
+  <% @flights.each do |flight| %>
+    <tr>
+      <td><%= flight.origin %></td>
+      <td><%= flight.destination %></td>
+      <td>$<%= flight.price %></td>
+      <td>
+        <form action="/flights/<%= flight.id %>/transactions/new" id="payment-form">
+          <input type="checkbox" name="hotel" value="true">Yes 
+          <input type="submit" value="Select Flight">
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>
