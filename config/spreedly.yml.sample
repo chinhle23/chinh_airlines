@@ -1,0 +1,11 @@
+# https://guides.rubyonrails.org/configuring.html#custom-configuration
+development:
+  # https://docs.spreedly.com/basics/credentials/
+  environment_key: '<environment_key>'
+  access_secret: '<access_secret>'
+  
+  # https://docs.spreedly.com/basics/gateway/
+  gateway_token: '<gateway_token>'
+  
+  # https://docs.spreedly.com/guides/payment-method-distribution/single-card/
+  receiver_token: '<receiver_token>'
