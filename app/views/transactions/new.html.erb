@@ -1,0 +1,41 @@
+<h2>Selected Flight</h2>
+
+<table>
+  <tr>
+    <th>Origin  |</th>
+    <th>Destination  |</th>
+    <th>Flight Price  |</th>
+    <th>Total Price</th>
+  </tr>
+
+  <tr>
+    <td><%= @flight.origin %></td> 
+    <td><%= @flight.destination %></td>
+    <td>$<%= @flight.price %></td>
+    <td>$<%= @total_price %></td>
+  </tr>
+</table><br><br>
+
+<form action="/flights/<%= @flight.id %>/transactions/new" id="payment-form">
+  <input type="hidden" name="payment_method_token" id="payment_method_token">
+  <input type="hidden" name="total_charge" id="total_charge" value=<%= @total_price %>>
+  <input type="checkbox" name="save_card" value="true" checked> Save card for future use?<br>
+  <input type="button" value="Checkout" onclick="SpreedlyExpress.openView();">
+</form>
+
+<script>
+  // Initialize Spreedly Express with total cost
+  SpreedlyExpress.init("<%= @environment_key %>", {
+    // Additional quotation marks are needed for this to resolve as a string
+    "amount": "<%= "$#{@total_price}" %>",
+    "company_name": "Spreedly Airlines"
+  });
+  // Create a callback function that sends the payment method token to company servers
+  SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+    // Send requisite payment method info to backend
+    var tokenField = document.getElementById("payment_method_token");
+    tokenField.setAttribute("value", token);
+    var masterForm = document.getElementById('payment-form');
+    masterForm.submit();
+  });
+</script>

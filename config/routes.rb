@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'flights#index'
-  resources :flights
+  resources :flights do
+    resources :transactions
+  end
 end

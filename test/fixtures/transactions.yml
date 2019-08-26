@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_charge: 1
+  transaction_token: MyString
+  flight: one
+
+two:
+  total_charge: 1
+  transaction_token: MyString
+  flight: two
