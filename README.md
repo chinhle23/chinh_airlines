@@ -1,6 +1,6 @@
 # Spreedly Airlines Sample App
 
-Setup1:
+Setup:
 
 * Create the config/spreedly.yml file, copy the contents of config/spreedly.yml.sample over, & replace <environment_key>, <access_secret>, <gateway_token>, and <receiver_token> with your own actual values:
 
