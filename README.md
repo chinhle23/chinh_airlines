@@ -1,24 +1,24 @@
-# README
+# Spreedly Airlines Sample App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requirements:
 
-Things you may want to cover:
+* Runs locally (doesn't have to be deployed to Heroku or other)
 
-* Ruby version
+* Does not have to use a database for persistence - can just be an ephemeral workflow or store what little state there might be in a user-specific cookie. You can use your local PG instance or sqlite, though, if you find that to be easiest.
 
-* System dependencies
+As far as user-facing functionality goes it should:
 
-* Configuration
+* List a few "Spreedly Airlines" flights with associated prices
 
-* Database creation
+* Let a user (no need for login functionality, just let anybody do this)
 
-* Database initialization
+  - Purchase a flight with a test credit card against the Spreedly test gateway
+  
+  - Purchase a flight using PMD that sends the card info to a travel partner like Expedia (using the echo endpoint to mimic an Expedia API call - the request/response format is immaterial). 
 
-* How to run the test suite
+* If the credit card is expired or invalid in any way, display an error message back to the user
 
-* Services (job queues, cache servers, search engines, etc.)
+* Give the user the option to save their credit card for future payments
 
-* Deployment instructions
+* List all processed transactions (can list all transactions across users, not user-specific)
 
-* ...
