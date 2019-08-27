@@ -1,5 +1,15 @@
 # Spreedly Airlines Sample App
 
+Setup:
+
+* Create the config/spreedly.yml file, copy the contents of config/spreedly.yml.sample over, & replace <environment_key>, <access_secret>, <gateway_token>, and <receiver_token> with your own actual values:
+
+  * https://docs.spreedly.com/basics/credentials/
+
+  * https://docs.spreedly.com/basics/gateway/
+
+  * https://docs.spreedly.com/guides/payment-method-distribution/single-card/
+
 Requirements:
 
 * Runs locally (doesn't have to be deployed to Heroku or other)
