@@ -3,6 +3,22 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = Transaction.all
+    # https://ruby-doc.org/stdlib-2.6.3/libdoc/net/http/rdoc/Net/HTTP.html
+    transactions_uri = URI('https://core.spreedly.com/v1/transactions.json?count=100&order=desc')
+    transactions_get_request = Net::HTTP::Get.new(transactions_uri)
+
+    transactions_get_request.basic_auth(
+      Rails.configuration.spreedly['environment_key'],
+      Rails.configuration.spreedly['access_secret']
+    )
+
+    transactions_get_request['Content-Type'] = 'application/json'
+
+    transactions_response = Net::HTTP.start(transactions_uri.hostname, transactions_uri.port, use_ssl: true) do |http|
+      http.request(transactions_get_request).body
+    end
+    parsed_transactions_response = JSON.parse(transactions_response)
+    @results = parsed_transactions_response['transactions']
   end
 
   def new

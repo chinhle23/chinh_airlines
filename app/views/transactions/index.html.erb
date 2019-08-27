@@ -1,4 +1,16 @@
-<h2>All transactions:</h2>
+<h2>All transactions from API call:</h2>
+
+<ul id="transactions">
+  <% @results.each do |result| %>
+    <li>
+      Transaction Type: <%= result['transaction_type'] %> | 
+      Transaction Token: <%= result['token'] %> | 
+      Created At: <%= result['created_at'] %> | 
+    </li>
+  <% end %>
+</ul>
+
+<h2>All transactions in local database:</h2>
 
 <ul id="transactions">
   <% @transactions.each do |transaction| %>
