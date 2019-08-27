@@ -28,8 +28,8 @@ class TransactionsController < ApplicationController
         pmd_transaction_token = retrieve_transaction_token(pmd_uri, payment_token, 0, retain)
         flash.notice = "PMD transaction #{pmd_transaction_token} Completed!"
       end 
+
+      redirect_to flight_transactions_path(1)
     end
-  
-    # redirect_to flight_transaction_path(@flight, @transaction)
-  end  
+  end
 end
