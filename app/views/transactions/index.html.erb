@@ -1,11 +1,27 @@
 <h2>All transactions from API call:</h2>
 
 <ul id="transactions">
-  <% @results.each do |result| %>
+  <% @transactions_results.each do |result| %>
     <li>
       Transaction Type: <%= result['transaction_type'] %> | 
       Transaction Token: <%= result['token'] %> | 
-      Created At: <%= result['created_at'] %> | 
+      Created At: <%= Time.parse(result['created_at']) %> | 
+    </li>
+  <% end %>
+</ul>
+
+<h2>All payment methods from API call:</h2>
+
+<ul id="transactions">
+  <% @payment_methods_results.each do |result| %>
+    <li>
+      Test?: <%= result['test'] %> |
+      Payment Method Type: <%= result['payment_method_type'] %> |
+      Card Type: <%= result['card_type'] %> |
+      Payment Method Token: <%= result['token'] %> | 
+      Fingerprint: <%= result['fingerprint'] %> |
+      Full Name: <%= result['full_name'] %> | 
+      Created At: <%= Time.parse(result['created_at']) %> | 
     </li>
   <% end %>
 </ul>

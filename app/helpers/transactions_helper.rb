@@ -10,7 +10,11 @@ module TransactionsHelper
     end
 
     parsed_transaction_response = JSON.parse(transaction_response)
-    parsed_transaction_response['transaction']['token']
+    if parsed_transaction_response['transaction']
+      return parsed_transaction_response['transaction']['token']  # returns a string if successful
+    else
+      return parsed_transaction_response['errors'][0]             # returns a hash if there are errors
+    end
   end
 
   def transaction_post_request(transaction_uri, payment_token, amount, retain)
